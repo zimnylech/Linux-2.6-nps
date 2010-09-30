@@ -36,7 +36,6 @@
 #include <linux/slab.h>
 #include <linux/pci.h>
 #include <linux/ide.h>
-#include <linux/smp_lock.h>
 #include <linux/completion.h>
 #include <linux/bitops.h>
 #include <linux/mutex.h>
