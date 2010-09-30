@@ -24,9 +24,6 @@
 #include "ffsdefs.h"
 #include "lld_emu.h"
 #include "lld.h"
-#if CMD_DMA
-#include "lld_cdma.h"
-#endif
 
 #define GLOB_LLD_PAGES           64
 #define GLOB_LLD_PAGE_SIZE       (512+16)
