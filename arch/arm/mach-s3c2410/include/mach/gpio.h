@@ -30,8 +30,4 @@
 #include <mach/gpio-nrs.h>
 #include <mach/gpio-fns.h>
 
-#ifdef CONFIG_CPU_S3C24XX
-#define S3C_GPIO_END	(S3C2410_GPIO_BANKJ + 32)
-#else
 #define S3C_GPIO_END	(S3C2410_GPIO_BANKH + 32)
-#endif
