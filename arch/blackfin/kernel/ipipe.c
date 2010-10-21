@@ -272,13 +272,6 @@ int ipipe_trigger_irq(unsigned irq)
 {
 	unsigned long flags;
 
-#ifdef CONFIG_IPIPE_DEBUG
-	if (irq >= IPIPE_NR_IRQS ||
-	    (ipipe_virtual_irq_p(irq)
-	     && !test_bit(irq - IPIPE_VIRQ_BASE, &__ipipe_virtual_irq_map)))
-		return -EINVAL;
-#endif
-
 	local_irq_save_hw(flags);
 	__ipipe_handle_irq(irq, NULL);
 	local_irq_restore_hw(flags);
