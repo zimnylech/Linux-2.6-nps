@@ -33,13 +33,9 @@
 
 #include <asm/hw_irq.h>
 
-#if defined(CONFIG_RTC_DRV_CMOS) || defined(CONFIG_RTC_DRV_CMOS_MODULE)
+#if defined(CONFIG_RTC_DRV_CMOS)
 /* this needs a better home */
 DEFINE_SPINLOCK(rtc_lock);
-
-#ifdef CONFIG_RTC_DRV_CMOS_MODULE
-EXPORT_SYMBOL(rtc_lock);
-#endif
 #endif  /* pc-style 'CMOS' RTC support */
 
 #ifdef CONFIG_SMP

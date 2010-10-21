@@ -23,7 +23,7 @@
 
 ACPI_MODULE_NAME("sleep")
 
-#if defined(CONFIG_RTC_DRV_CMOS) || defined(CONFIG_RTC_DRV_CMOS_MODULE) || !defined(CONFIG_X86)
+#if defined(CONFIG_RTC_DRV_CMOS) || !defined(CONFIG_X86)
 /* use /sys/class/rtc/rtcX/wakealarm instead; it's not ACPI-specific */
 #else
 #define	HAVE_ACPI_LEGACY_ALARM
