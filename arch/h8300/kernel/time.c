@@ -51,9 +51,6 @@ void read_persistent_clock(struct timespec *ts)
 	year = 1980;
 	mon = day = 1;
 	hour = min = sec = 0;
-#ifdef CONFIG_H8300_GETTOD
-	h8300_gettod (&year, &mon, &day, &hour, &min, &sec);
-#endif
 	if ((year += 1900) < 1970)
 		year += 100;
 	ts->tv_sec = mktime(year, mon, day, hour, min, sec);
