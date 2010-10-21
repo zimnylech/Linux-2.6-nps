@@ -137,42 +137,10 @@ static inline void local_irq_restore_hw_notrace(unsigned long flags)
 		local_irq_enable_hw_notrace();
 }
 
-#ifdef CONFIG_IPIPE_TRACE_IRQSOFF
-# define local_irq_disable_hw()				\
-	do {						\
-		if (!irqs_disabled_hw()) {		\
-			local_irq_disable_hw_notrace();	\
-			ipipe_trace_begin(0x80000000);	\
-		}					\
-	} while (0)
-# define local_irq_enable_hw()				\
-	do {						\
-		if (irqs_disabled_hw()) {		\
-			ipipe_trace_end(0x80000000);	\
-			local_irq_enable_hw_notrace();	\
-		}					\
-	} while (0)
-# define local_irq_save_hw(flags)			\
-	do {						\
-		local_save_flags_hw(flags);		\
-		if (!irqs_disabled_flags_hw(flags)) {	\
-			local_irq_disable_hw_notrace();	\
-			ipipe_trace_begin(0x80000001);	\
-		}					\
-	} while (0)
-# define local_irq_restore_hw(flags)			\
-	do {						\
-		if (!irqs_disabled_flags_hw(flags)) {	\
-			ipipe_trace_end(0x80000001);	\
-			local_irq_enable_hw_notrace();	\
-		}					\
-	} while (0)
-#else /* !CONFIG_IPIPE_TRACE_IRQSOFF */
 # define local_irq_disable_hw()		local_irq_disable_hw_notrace()
 # define local_irq_enable_hw()		local_irq_enable_hw_notrace()
 # define local_irq_save_hw(flags)	local_irq_save_hw_notrace(flags)
 # define local_irq_restore_hw(flags)	local_irq_restore_hw_notrace(flags)
-#endif /* !CONFIG_IPIPE_TRACE_IRQSOFF */
 
 #else /* CONFIG_IPIPE */
 
