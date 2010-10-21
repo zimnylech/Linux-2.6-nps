@@ -280,17 +280,7 @@ asmlinkage notrace void trap_c(struct pt_regs *fp)
 			goto traps_done;
 		else
 			break;
-#ifdef CONFIG_BF535
-	/* 0x29 - Instruction fetch access error (535 only) */
-	case VEC_ISTRU_VL:      /* ADSP-BF535 only (MH) */
-		info.si_code = BUS_OPFETCH;
-		sig = SIGBUS;
-		strerror = KERN_NOTICE "BF535: VEC_ISTRU_VL\n";
-		CHK_DEBUGGER_TRAP_MAYBE();
-		break;
-#else
 	/* 0x29 - Reserved, Caught by default */
-#endif
 	/* 0x2A - Instruction fetch misaligned, handled here */
 	case VEC_MISALI_I:
 		info.si_code = BUS_ADRALN;
